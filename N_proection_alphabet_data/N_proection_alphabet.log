@@ -235,3 +235,6 @@ INFO:root:2018-07-10-16.14.18 | Training | Epoch: 217  | Name Of Answer: 9 | Los
 INFO:root:2018-07-10-16.15.40 | Training | Epoch: 218  | Name Of Answer: 8 | Loss: 7.833774962110604
 INFO:root:2018-07-10-16.17.21 | Training | Epoch: 219  | Name Of Answer: 21 | Loss: 29.958365073015326
 INFO:root:2018-07-10-16.18.52 | Training | Epoch: 220  | Name Of Answer: 19 | Loss: 27.216154110362933
+INFO:root:2018-07-10-14.34.59 | Training | Epoch: 223  | Name Of Answer: 13 | Loss: 124.44128375585578
+INFO:root:2018-07-10-14.37.02 | Training | Epoch: 224  | Name Of Answer: 14 | Loss: 59.78686360874064
+INFO:root:2018-07-10-14.39.55 | Training | Epoch: 225  | Name Of Answer: 5 | Loss: 58.40109578101083

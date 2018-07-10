@@ -6,8 +6,6 @@ from PIL import Image
 import random
 import math as m
 
-net.load()
-
 def deform_pic(image, phi, coff_scale):
     new_image = np.zeros((32,32))
 
@@ -39,11 +37,9 @@ def deform_pic(image, phi, coff_scale):
     image = new_image
     return image
 
-def random_():
+def random_pic(num_canon):
     phi = random.uniform(-1, 1)
     scale = random.uniform(0.6, 1.4)
-
-    num_canon = int(random.uniform(0,36))
 
     canon = Image.open("canon/can_"+str(num_canon)+".png").convert('L')
     canon = np.array(canon)
@@ -51,27 +47,37 @@ def random_():
     test = deform_pic(canon, phi, scale)
 
     canon = canon.flatten()/255
+    test = test.flatten()/255
 
-    return test, canon, num_canon
+
+    return test, canon
+
+def create_data_set(num_data):
+    j = 0
+    
+    X = []
+    Y = []
+    name_of_answer_arr = []
+
+
+    while j < num_data:
+        for i in range(0, 35):
+            test, canon = random_pic(i)
+
+            X.append(test)
+            Y.append(test)
+            name_of_answer_arr.append(i)
+        
+            j += 1
+
+    return X, Y, name_of_answer_arr
 
 teacher = BackPropTeacherTest(net,
                               error = 'MSE',
                               learning_rate = 0.001,
                               alpha = 0.0001)
 
-def teach():
-    test, canon_arr, num_canon = random_()
+for i in range(10):
+    X, Y, name_of_answer_array = create_data_set(100)
 
-    test_pic = Image.fromarray(test.astype('uint8')).convert('L')
-
-    test = test.flatten()/255
-
-    output = net.forward(test, True)*255
-    output = np.reshape(output, (32,32))
-    output = Image.fromarray(output.astype('uint8')).convert('L')
-    output.save('data_set/output.png')
-    test_pic.save('data_set/input.png')
-    teacher.train(test, canon_arr, load_data = True, name_of_answer = num_canon)
-
-for i in range(100):
-    teach()
+    teacher.train(X, Y, 100, load_data = True, name_of_answer = name_of_answer_array)
