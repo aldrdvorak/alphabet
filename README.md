@@ -1,3 +1,8 @@
+### Обновление NetPy
+```sh
+pip install netpy -U
+```
+
 ### Установка пакета watchdog
 
 ```sh
