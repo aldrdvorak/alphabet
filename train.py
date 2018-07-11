@@ -61,7 +61,7 @@ def create_data_set(num_data):
 
 
     while j < num_data:
-        for i in range(0, 35):
+        for i in range(0, 36):
             test, canon = random_pic(i)
 
             X.append(test)
@@ -80,4 +80,7 @@ teacher = BackPropTeacherTest(net,
 for i in range(10):
     X, Y, name_of_answer_array = create_data_set(100)
 
-    teacher.train(X, Y, 100, load_data = True, name_of_answer = name_of_answer_array)
+    teacher.train(X, Y, 100, load_data = True, 
+                             name_of_answer = name_of_answer_array,
+                             random_data = False,
+                             save_output_data = True)
