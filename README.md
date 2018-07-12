@@ -1,3 +1,9 @@
+### Активация виртуального окружения
+```sh
+C:\PythEnv\NetEnv\Scripts\activate
+```
+
+
 ### Обновление NetPy
 ```sh
 pip install netpy -U
