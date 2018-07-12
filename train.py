@@ -49,7 +49,6 @@ def random_pic(num_canon):
     canon = canon.flatten()/255
     test = test.flatten()/255
 
-
     return test, canon
 
 def create_data_set(num_data):
@@ -77,7 +76,10 @@ teacher = BackPropTeacherTest(net,
                               learning_rate = 0.0001,
                               alpha = 0.0001)
 
-for i in range(0,500): 
-    X, Y, name_of_answer_array = create_data_set(108)
-    print(name_of_answer_array)
-    teacher.train(X, Y, 108, load_data = True, name_of_answer = name_of_answer_array)
+for i in range(10):
+    X, Y, name_of_answer_array = create_data_set(100)
+
+    teacher.train(X, Y, 100, load_data = True, 
+                             name_of_answer = name_of_answer_array,
+                             random_data = False,
+                             save_output_data = True)
