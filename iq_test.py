@@ -101,7 +101,7 @@ Y_ = []
 X_ = []
 
 
-for i in range(0, 1000):
+for i in range(0, 1500):
     X, Y = random_()
    # Y = Image.open("canon/can_"+str(i)+".png").convert("L")
    # Y = np.array(Y)
