@@ -71,6 +71,36 @@ def create_data_set(num_data):
 
     return X, Y, name_of_answer_arr
 
+def sorted_Test_data(X, Y, name_of_answer_array):
+    net.load()
+
+    errors_old = []
+    errors_new = []
+    
+    new_name_of_answer = []
+    new_X = []
+    new_Y = []
+
+
+    for i in range(len(X)):
+        errors_old = np.hstack((errors_old, mse_Error(net.forward(X[i]), Y[i])))
+
+    errors_new = np.hstack((errors_new, errors_old))
+    errors_new = -np.sort(-errors_new)
+
+    for i in range(len(errors_new)):
+        for j in range(len(errors_new)):
+            if errors_new[i] == errors_old[j]:
+                new_X.append((X[j]))
+                new_Y.append((Y[j]))
+                new_name_of_answer = np.hstack((new_name_of_answer, name_of_answer_array[j]))
+
+    print("Old errors:", errors_old)
+    print("New errors:", errors_new)
+    
+    return new_X, new_Y, new_name_of_answer
+
+
 teacher = BackPropTeacherTest(net,
                               error = 'MSE',
                               learning_rate = 0.0001,
